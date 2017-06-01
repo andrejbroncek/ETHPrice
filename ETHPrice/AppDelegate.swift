@@ -39,6 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Refresh", action: #selector(refreshPrice), keyEquivalent: "r"))
+        menu.addItem(NSMenuItem(title: "ETH on CryptoCompare", action: #selector(openCryptoCompare), keyEquivalent: "c"))
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "q"))
         
@@ -53,6 +54,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func quit() {
         NSApplication.shared().terminate(self)
+    }
+    
+    func openCryptoCompare() {
+        if let url = URL(string: "https://www.cryptocompare.com/coins/eth/overview/EUR"), NSWorkspace.shared().open(url) {
+            print("https://www.cryptocompare.com/coins/eth/overview/EUR opened")
+        }
     }
     
     func getEthPrice() {
